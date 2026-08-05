@@ -5,10 +5,9 @@ AI was used to make this app. All the ideas were my own, and it took time to get
 
 ---
 
-### Step 1️⃣: Prowlarr Setup
+### Step 1️⃣: Radarr Integration
 > *Use your own set ports if you changed them.*
 
-#### 1. Radarr Integration
 * **Radarr:** Go to `http://localhost:7879/` → **Settings** → **General** → Copy **API key**
 * **Prowlarr:** Go to `http://localhost:9697/` → **Settings** → **Apps** → **Applications** → **`+`** → **Radarr**
 * **Prowlarr Server:** Change to `http://prowlarr:9696`
@@ -40,18 +39,34 @@ AI was used to make this app. All the ideas were my own, and it took time to get
 ---
 
 ### Step 4️⃣: qBittorrent Connection
-> *You will need your Username and Password for this section. Use your set ports if changed.*
+> *You will need your qBittorrent Username and Password for this section. Use your set ports if changed.*
 
-* **Prowlarr:** Go to **Settings** → **Download Clients** → **`+`** → **qBittorrent**
+* **Radarr:** Go to **Settings** → **Download Clients** → **`+`** → **qBittorrent**
+* **Sonarr:** Go to **Settings** → **Download Clients** → **`+`** → **qBittorrent**
+* **Lidarr:** Go to **Settings** → **Download Clients** → **`+`** → **qBittorrent**
 * **Host:** `qBittorrent`
 * **Port:** Your set port (Default is `8080`)
 * **Username:** `[Your qBittorrent Username]`
 * **Password:** `[Your qBittorrent Password]`
 * Click **Test & Save**.
-* *Note:* If you run into an **Authentication failure**, turn the stack off and on, then try again.
+* *Note:* If you run into an **Authentication failure**, use the Refresh Stack Button to turn the stack off and on, then try again.
 
 ---
 
+### Step 5️⃣: FlareSolverr
+> *Use your own set ports if you changed them.*
+
+* **Prowlarr:** Go to **Settings** → **Indexers** → **`+`** → **FlareSolverr**
+* **Name:** `FlareSolverr`
+* **Tag:** `FlareSolverr`
+* **Host:** `http://FlareSolverr:8191`
+* Click **Test & Save**.
+
+---
+
+* *Note:* Whichever folder you choose to link as your media file will appear inside the **/data**, folder in the File Browser
+
+---
 ### 📂 Recommended Media Folder Structure
 
 ```text
@@ -68,9 +83,11 @@ Media
 Option A: Using Separate Incomplete/Completed Folders
 If you follow the folder structure above, configure qBittorrent with these save paths:
 
+**`Settings`** → **`Downloads`** → **`Saving Management`** → **`Default Save Path`**
+
 Default Save Path: /data/media/Downloads/completed
 
-Keep incomplete in: /data/media/Downloads/incomplete
+Keep incomplete Torrents in: /data/media/Downloads/incomplete
 
 Option B: Using a Single Folder
 If you don't want a separate incomplete folder, leave it turned off and point everything to the main downloads folder:
